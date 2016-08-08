@@ -120,7 +120,7 @@ public class QQClient extends javax.swing.JFrame {
          
          // some msg is here, we only clear the msg
          if(this.jTextFieldEdit.getText().startsWith("CHAT") && this.jTextFieldEdit.getText().split(":").length > 3){
-             String init = this.jTextFieldEdit.getText().split(":")[0] + this.jTextFieldEdit.getText().split(":")[1] + this.jTextFieldEdit.getText().split(":")[2] + ":";
+             String init = this.jTextFieldEdit.getText().split(":")[0] + ":" + this.jTextFieldEdit.getText().split(":")[1] + ":" + this.jTextFieldEdit.getText().split(":")[2] + ":";
              this.jTextFieldEdit.setText(init);
          }
          else{
@@ -171,7 +171,7 @@ public class QQClient extends javax.swing.JFrame {
     
     public void runSocket() throws Exception{
         
-        Socket socket = new Socket("192.168.0.14", port);
+        Socket socket = new Socket("localhost", port);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out = new PrintWriter(socket.getOutputStream(),true);
         System.out.println("start listening");
