@@ -118,7 +118,14 @@ public class QQClient extends javax.swing.JFrame {
              
          this.out.println(this.jTextFieldEdit.getText());
          
-         this.jTextFieldEdit.setText("");
+         // some msg is here, we only clear the msg
+         if(this.jTextFieldEdit.getText().startsWith("CHAT") && this.jTextFieldEdit.getText().split(":").length > 3){
+             String init = this.jTextFieldEdit.getText().split(":")[0] + this.jTextFieldEdit.getText().split(":")[1] + this.jTextFieldEdit.getText().split(":")[2] + ":";
+             this.jTextFieldEdit.setText(init);
+         }
+         else{
+            this.jTextFieldEdit.setText("");
+         }
     }//GEN-LAST:event_jTextFieldEditActionPerformed
 
     private void jComboBoxSelectFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelectFriendActionPerformed
@@ -128,7 +135,7 @@ public class QQClient extends javax.swing.JFrame {
 
     
     private void printDebug(String s){
-        this.jTextAreaLog.append("\n##debug:" + s);
+        //this.jTextAreaLog.append("\n##debug:" + s);
     }
     
     private void printPrompt(String s){
@@ -164,7 +171,7 @@ public class QQClient extends javax.swing.JFrame {
     
     public void runSocket() throws Exception{
         
-        Socket socket = new Socket("localhost", port);
+        Socket socket = new Socket("192.168.0.14", port);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out = new PrintWriter(socket.getOutputStream(),true);
         System.out.println("start listening");
